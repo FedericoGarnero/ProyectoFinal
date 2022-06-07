@@ -1,6 +1,9 @@
 package com.selenium.tests;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.selenium.drivers.DriverFactory;
@@ -10,14 +13,20 @@ import com.selenium.pages.DespResultPage;
 
 public class DespAlojamientoTest extends DriverFactory {
 
+	 WebDriver driver ;
+	
+	@BeforeMethod(alwaysRun = true)
+	public void setup(ITestContext context) {
+		String navegadorTestSuite = context.getCurrentXmlTest().getParameter("Navegador");
+		String navegador = navegadorTestSuite != null ? navegadorTestSuite : "CHROME";
+		
+		String url = context.getCurrentXmlTest().getParameter("URLDesp");
+		driver = DriverFactory.AbrirBrowser(navegador,url);
+	}
 	 @Test(description = "Validar alojamientos")
 	  public void Des() throws Exception {
 		  
-		  WebDriver driver = DriverFactory.AbrirBrowser("CHROME", "https://www.despegar.com.ar/");
-		  
-		  
 		  DespPage buscar = new DespPage(driver);	
-		  
 		  
 		  buscar.alojamientos();
 		  
@@ -39,7 +48,10 @@ public class DespAlojamientoTest extends DriverFactory {
 		  
 		  resultadoPage.validacion();
 		  
-		  DriverFactory.CerrarBrowser(driver);
-		  
+	  }
+	 
+	  @AfterMethod
+	  public void endSetup() {
+		 DriverFactory.CerrarBrowser(driver);
 	  }
 }
