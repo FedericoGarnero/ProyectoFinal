@@ -19,6 +19,6 @@ public class WikiResultadoPage {
 	
 	public void validar() {
 		System.out.println("Texto encontrado: "+ titulo.getText());
-		Assert.assertEquals(titulo.getText(), "Autobiografía de Rojo");
+		Assert.assertEquals(titulo.getText(), "Antonín Dvořák");
 	}
 }

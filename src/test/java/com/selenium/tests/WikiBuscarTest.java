@@ -32,14 +32,14 @@ public class WikiBuscarTest extends DriverFactory{
 	
 	
 
-	@Test(description = "Validar que la usqueda funcione")
+	@Test(groups = {"WikiBuscar"},description = "Validar que la usqueda funcione")
 	public void testWiki() {
 		WikiHomePage buscar = new WikiHomePage(driver);
 		
 		buscar.busqueda();
 	}
 	
-	  @AfterMethod
+	  @AfterMethod(alwaysRun = true)
 	  public void endSetup() {
 		 DriverFactory.CerrarBrowser(driver);
 	  }

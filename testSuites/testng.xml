@@ -4,7 +4,16 @@
 <parameter name="Navegador" value="CHROME"></parameter>
 <parameter name="URLWiki" value="https://es.wikipedia.org/wiki/Wikipedia:Portada"></parameter>
 <parameter name="URLDesp" value="https://despegar.com.ar"></parameter>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" preserve-order="true" name="Test">
+  <groups>
+  	<run>
+  		<include name="grupo_alojamiento"></include>
+  		<include name="grupo_barra"></include>
+  		
+  		<exclude name="WikiBuscar"></exclude>
+  		
+  	</run>
+  </groups>
     <classes>
       <class name="com.selenium.tests.DespAlojamientoTest"/>
        <class name="com.selenium.tests.WikiBuscarTest"/>

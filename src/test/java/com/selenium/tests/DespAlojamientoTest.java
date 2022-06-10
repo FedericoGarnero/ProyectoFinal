@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.selenium.drivers.DriverFactory;
 import com.selenium.pages.DespAlojaPage;
+import com.selenium.pages.DespBarraHome;
 import com.selenium.pages.DespPage;
 import com.selenium.pages.DespResultPage;
 
@@ -31,7 +32,7 @@ public class DespAlojamientoTest extends DriverFactory {
 	}
 	
 	
-	 @Test(description = "Validar alojamientos", dataProvider="lugares")
+	 @Test(groups = {"grupo_alojamiento"},description = "Validar alojamientos", dataProvider="lugares")
 	  public void Des(String lugares) throws Exception {
 		  
 		  DespPage buscar = new DespPage(driver);	
@@ -43,9 +44,11 @@ public class DespAlojamientoTest extends DriverFactory {
 		  
 		  alojamientospage.ingresarCiudad(lugares);
 		  
+		  alojamientospage.entendiCook();
+		  
 		  alojamientospage.fechaEntrada();
 		  
-		  alojamientospage.entendiCook();
+		  Thread.sleep(1000);
 		  
 		  alojamientospage.fechaSalida();
 		  
@@ -55,11 +58,23 @@ public class DespAlojamientoTest extends DriverFactory {
 		  
 		  DespResultPage resultadoPage = alojamientospage.resultpage();
 		  
-		  resultadoPage.validacion();
-		  
+		  resultadoPage.validacionAlojamientos();
 	  }
 	 
-	  @AfterMethod
+	 @Test(groups = {"grupo_barra"},description = "Recorrer Barra Navegadora")
+	 public void barraDesp() {
+		 DespBarraHome barra = new DespBarraHome(driver);
+		    try {
+				barra.recorrerbarra();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 
+	 }
+	 
+	 
+	  @AfterMethod(alwaysRun = true)
 	  public void endSetup() {
 		 DriverFactory.CerrarBrowser(driver);
 	  }

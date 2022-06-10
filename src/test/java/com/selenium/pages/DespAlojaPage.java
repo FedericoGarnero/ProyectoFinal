@@ -28,10 +28,10 @@ public class DespAlojaPage {
 	@FindBy(css = "div.sbox5-floating-tooltip.sbox5-floating-tooltip-opened:nth-child(4) div.sbox5-3-floating-tooltip-datepicker-wrapper.sbox5-compact-view > div.calendar-container")
 	private WebElement waitFecha;
 	
-	@FindBy (xpath = "//*[@class='sbox5-floating-tooltip sbox5-floating-tooltip-opened']//*[@class='sbox5-monthgrid-datenumber -weekday']//*[@class='sbox5-monthgrid-datenumber-number'][text()=11]")
+	@FindBy (xpath = "//*[@class='sbox5-floating-tooltip sbox5-floating-tooltip-opened']//*[@class='sbox5-monthgrid-datenumber -weekday']//*[@class='sbox5-monthgrid-datenumber-number'][text()=18]")
 	private WebElement numeroentrada;
 	
-	@FindBy (xpath = "//div[@class='sbox5-floating-tooltip sbox5-floating-tooltip-opened']//div[@class='sbox5-monthgrid-dates sbox5-monthgrid-dates-30']//div[text()=18]")
+	@FindBy (xpath = "//div[@class='sbox5-floating-tooltip sbox5-floating-tooltip-opened']//div[@class='sbox5-monthgrid-dates sbox5-monthgrid-dates-30']//div[text()=25]")
 	private WebElement numerosalida;
 	
 	@FindBy (css = "a.lgpd-banner--button.eva-3-btn.-white.-md")
@@ -83,6 +83,10 @@ public class DespAlojaPage {
 		
 	}
 	
+	public void entendiCook() {
+		entendicookies.click();
+	}
+	
 	public void fechaEntrada() {
 		fecha.click();
 		wait.until(ExpectedConditions.visibilityOf(waitFecha));
@@ -90,9 +94,7 @@ public class DespAlojaPage {
 		numeroentrada.click();	
 	}
 	
-	public void entendiCook() {
-		entendicookies.click();
-	}
+
 	
 	public void fechaSalida() {
 		numerosalida.click();

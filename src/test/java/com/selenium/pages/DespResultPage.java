@@ -17,6 +17,9 @@ public class DespResultPage {
 	@FindBy(css = ".sub-nav-corners-container")
 	private WebElement searchimput;
 	
+	@FindBy(css = "h1.sbox5-title")
+	private WebElement textAlojamiento;
+	
 	public DespResultPage(WebDriver driver) {
 		this.driver = driver;
 		this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -24,7 +27,8 @@ public class DespResultPage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void validacion() {
+	public void validacionAlojamientos() {
 		Assert.assertTrue(searchimput.isDisplayed(),"Error no se ve el la barra");
+		Assert.assertEquals(textAlojamiento.getText(), "Alojamientos");
 	}
 }
